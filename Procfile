@@ -1,3 +1,1 @@
-web: gunicorn website.wsgi:application --log-file -
-python manage.py collectstatic --noinput
-python manage.py migrate
+web: python3 manage.py runserver 0.0.0.0:\$PORT
