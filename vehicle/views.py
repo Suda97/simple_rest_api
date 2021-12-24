@@ -12,7 +12,7 @@ from .models import Vehicle
 def cars(request):
     if request.method == 'GET':
         # Saving in varable list of all objects in table Vehicle
-        listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'avg_rating'))
+        listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'avg_rating').order_by('-id'))
 
         # For safety
         if not listOfCars:
@@ -53,11 +53,13 @@ def popular(request):
 
 @csrf_exempt
 @require_http_methods(['DELETE'])
-def delete(request, vehicleId):
-    # Checking if car with given id exists in local database
-    get_object_or_404(Vehicle, pk=vehicleId)
-    Vehicle.objects.filter(pk=vehicleId).delete()
-    return HttpResponse()
+def delete(request, vehicle_id):
+    # Handling "Not found error"
+    try:
+        Vehicle.objects.filter(id=vehicle_id).delete()
+        return HttpResponse()
+    except:
+        raise Http404('Car with given id not found in database')
 
 
 @csrf_exempt
@@ -69,6 +71,7 @@ def rate(request):
     if rating > 5 or rating < 1:
         return HttpResponse('Rating should be ranging from 1 to 5')
 
+    # Another way of handling "not found" error
     get_object_or_404(Vehicle, pk=car_id)
 
     data = Vehicle.objects.get(id=car_id)
