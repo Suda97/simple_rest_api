@@ -60,7 +60,6 @@ def delete(request, car_id):
     return HttpResponse()
 
 
-
 @csrf_exempt
 @require_http_methods(['POST'])
 def rate(request):

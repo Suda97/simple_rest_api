@@ -2,7 +2,9 @@
 This application is a simple REST API made in Django.<br>
 It's using HTTP methods to do various operations in database.<br>
 To run it You have to install Django 4.0 and "requests" library.<br>
-<b>App Name: Vehicle</b>
+App Name: <b>Vehicle</b><br>
+To start application locally type in terminal: <b>python3 manage.py runserver</b>
+
 <h3>POST /cars</h3>
 It will check if given model exists in external database https://vpic.nhtsa.dot.gov/api/ . <br>
 <b>If exists:</b> The given model and maker will be saved in local database. <br>
