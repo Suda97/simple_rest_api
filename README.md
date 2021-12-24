@@ -19,7 +19,7 @@ It will check if vehicle with a given id exists in local database.<br>
 <br><b>Local example:</b><br>
 curl -X DELETE http://127.0.0.1:8000/vehicle/delete/15/
 <br><b>Heroku example:</b><br>
-curl -X DELETE https://simple-rest-api.herokuapp.com/delete/15/
+curl -X DELETE https://simple-rest-api.herokuapp.com/vehicle/delete/15/
 
 
 <h3>POST /rate</h3>

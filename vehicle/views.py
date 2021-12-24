@@ -53,10 +53,10 @@ def popular(request):
 
 @csrf_exempt
 @require_http_methods(['DELETE'])
-def delete(request, vehicle_id):
+def delete(request, car_id):
     # Handling "Not found error"
     try:
-        Vehicle.objects.filter(id=vehicle_id).delete()
+        Vehicle.objects.filter(id=car_id).delete()
         return HttpResponse()
     except:
         raise Http404('Car with given id not found in database')
