@@ -1,0 +1,1 @@
+app: python3 menage.py runserver
