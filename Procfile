@@ -1,1 +1,1 @@
-app: python3 menage.py runserver
+app: python3 manage.py runserver
