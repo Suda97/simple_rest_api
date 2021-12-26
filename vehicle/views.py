@@ -63,7 +63,7 @@ def rate(request):
     if rating > 5 or rating < 1:
         return HttpResponse('Rating should be ranging from 1 to 5')
 
-    # Another way of handling "not found" error
+    # Handling "not found" error
     get_object_or_404(Vehicle, pk=car_id)
 
     data = Vehicle.objects.get(id=car_id)
