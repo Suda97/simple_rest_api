@@ -11,7 +11,7 @@ from .models import Vehicle
 @require_http_methods(['GET', 'POST'])
 def cars(request):
     if request.method == 'GET':
-        # Saving in varable list of all objects in table Vehicle
+        # Saving in variable list of all objects in table Vehicle
         listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'avg_rating').order_by('id'))
 
         # Returning list of all cars as json
