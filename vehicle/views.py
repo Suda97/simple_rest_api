@@ -13,7 +13,7 @@ def cars(request):
     if request.method == 'GET':
         # Saving in varable list of all objects in table Vehicle
         listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'avg_rating').order_by('id'))
-        print(listOfCars)
+
         # Returning list of all cars as json
         return JsonResponse(listOfCars, safe=False)
 
