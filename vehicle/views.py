@@ -1,5 +1,5 @@
 import json
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
@@ -13,13 +13,9 @@ def cars(request):
     if request.method == 'GET':
         # Saving in varable list of all objects in table Vehicle
         listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'avg_rating').order_by('id'))
-
-        # For safety
-        if not listOfCars:
-            raise Http404('No cars in database')
-
+        print(listOfCars)
         # Returning list of all cars as json
-        return HttpResponse(listOfCars, content_type='application/json')
+        return JsonResponse(listOfCars, safe=False)
 
     elif request.method == 'POST':
         req = json.loads(request.body)
@@ -45,10 +41,8 @@ def popular(request):
     # Getting list of all cars from database
     listOfCars = list(Vehicle.objects.values('id', 'make', 'model', 'rates_number').order_by('-rates_number'))
 
-    if not listOfCars:
-        raise Http404('No cars in database')
     # Returning list of cars as json
-    return HttpResponse(listOfCars, content_type='application/json')
+    return JsonResponse(listOfCars, safe=False)
 
 
 @csrf_exempt
